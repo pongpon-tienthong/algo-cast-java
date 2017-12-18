@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Chunk {
+
+//    Solution #1
     public ArrayList<ArrayList<Integer>> chunk(Integer[] arr, Integer size) {
 
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
@@ -34,7 +36,24 @@ public class Chunk {
                 last.add(ele);
             }
         }
-        
+
+        return res;
+    }
+
+//    Solution #2
+    public ArrayList<ArrayList<Integer>> chunk2(Integer[] arr, Integer size) {
+
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Integer idx = 0;
+
+        while(idx < arr.length) {
+
+            Integer toIdx = (idx + size) < arr.length ? idx + size : arr.length;
+
+            res.add(new ArrayList<>(Arrays.asList(Arrays.copyOfRange(arr, idx, toIdx))));
+            idx += size;
+        }
+
         return res;
     }
 }
